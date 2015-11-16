@@ -10,7 +10,7 @@
   //2つ目の要素を$actionに定義
   $action = $params[1]; 
   //さらにoptionが指定される場合は3つ目の要素をidとして定義
-  if (count($params) < 2) {
+  if (count($params) > 2) {
     $id = $params[2];
   }
 
@@ -22,6 +22,7 @@
   include('controllers/'.$plural_resource.'_controller.php');
 
   include('./views/layouts/application.php');
+  include('./views/layouts/function.php');
 
   
 

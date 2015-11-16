@@ -16,16 +16,27 @@
             return $sql;
         }
         public function create($member,$file){
-          $sql = sprintf(
-              'INSERT INTO members SET name="%s", email="%s", password="%s", image="%s",created=NOW()',
-              $member["name"],
-              $member["email"],
-              sha1($member["password"]),
-              $file
-          );
-          return $sql;
+            $sql = sprintf(
+                'INSERT INTO members SET name="%s", email="%s", password="%s", image="%s",created=NOW()',
+                $member["name"],
+                $member["email"],
+                sha1($member["password"]),
+                $file
+            );
+            return $sql;
+        }
+
+        public function show($id){
+           $sql = sprintf(
+                'SELECT * from %s WHERE id=%d',
+                $this->plural_resource,
+                $id
+            );
+           return $sql;
         }
     }
+
+
 ?>
 
 

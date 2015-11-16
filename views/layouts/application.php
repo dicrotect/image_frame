@@ -5,7 +5,7 @@
   <title>シンプルフレームワーク</title>
 </head>
 <body>
-  <h1>フレームワーク作成</h1>
+  <h1>写真投稿掲示板の作成</h1>
   <?php
     include('./views/'.$resource.'/'.$action.'.php');
   ?>
