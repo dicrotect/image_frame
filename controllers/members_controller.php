@@ -3,7 +3,7 @@
 class membersController {
       private $db;
       private $plural_resource;
-      public function __construct($db, $plural_resource){
+      public function __construct($db, $plural_resource) {
            $this->db = $db;
            $this->plural_resource = $plural_resource;
       }
@@ -15,20 +15,29 @@ class membersController {
           return $members;
       }
 
-      public function  _new($member,$file){
-          if(!empty($member)){
+      public function  _new($member,$file) {
+          if(!empty($member)) {
               $sql = new member($this->plural_resource);
               $sql = $sql->create($member,$file);
               mysqli_query($this->db, $sql) or die (mysqli_error($this->db));
               header("Location: index");
           }
       }
-      public function  show($id){
+      public function  show($id) {
           $sql = new member($this->plural_resource);
           $sql = $sql->show($id);
           $member = mysqli_query($this->db, $sql) or die (mysqli_error($this->db));
           return $member;
       }
+
+      public function  show_member_name($member_id) {
+          $sql = new member($this->plural_resource);
+          $sql = $sql->show_member_name($member_id);
+          $member = mysqli_query($this->db, $sql) or die (mysqli_error($this->db));
+          return $member;
+      }
+
+      
   }
       
 

@@ -11,4 +11,8 @@
 
         return $a_tag;
     }
+
+    function h($value){
+        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    }
  ?>    
