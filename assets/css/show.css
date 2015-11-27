@@ -1,0 +1,13 @@
+.show_page{
+    text-align: center;
+    padding-bottom:  50px;
+    background-color: #CFF5E8;
+    border-color-color: green;
+    border-style: ridge;
+}
+
+.show_contents{
+    padding-top: 20px;
+    border-bottom: ridge;
+    
+}
