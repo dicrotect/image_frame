@@ -20,7 +20,7 @@
                             $picture = $fileName;  
                             move_uploaded_file($_FILES['picture']['tmp_name'],'pictures/'.$picture);
                         }
-                        //DBへ投稿情報をINSERTするオブジェクトを生成
+                        //DBへ投稿情報をINSERT
                         $picturesController = new picturesController($db,$plural_resource);
                         $picturesController->create($picture,$_POST['title'],$_POST['comment'],intval($_POST['genre']));   
                         header('Location:new');
@@ -33,7 +33,7 @@
         exit;
     }
 ?>
-<!-- プロフィールのプロフィールの表示 -->
+<!-- プロフィールの表示 -->
 <div class="container">
   <div class="row">
     <div class="profile-header-container">   
@@ -124,7 +124,6 @@
             echo '<p>'.$member_name['name'].'さんの写真</p>';
             //投稿情報を表示
             $picture_id = $picture['id'];
-
             echo '<p>'.$picture["title"].'</p>';
             echo sprintf('<img src="../pictures/%s" width="50" height ="150">',$picture['picture']);
             echo '<p>'.$picture["comment"].'</p>';
@@ -142,7 +141,6 @@
             $likes = new picturesController($db,$plural_resource);
             $cnt = $likes->like($picture_id);
             echo sprintf('<a href=../like/create?id=%s><i class="fa fa-thumbs-up"></i></a>',$picture["id"]);
-            echo sprintf('[<a href=show?id=%s>show</a>]',$picture["id"]);
             if (isset($cnt)){
               $like_sum = mysqli_fetch_assoc($cnt);
               $likes = $like_sum['cnt'];
@@ -150,6 +148,7 @@
               $picturesController = new picturesController($db,$plural_resource);
               $update_like = $picturesController->update_likes($likes,$picture_id);
             }
+            echo sprintf('[<a href=show?id=%s>show</a>]',$picture["id"]);
           ?>
         </span>
       <?php } ?>
@@ -187,9 +186,8 @@
             //     $genre = mysqli_fetch_assoc($genres);
             //     echo '<p>'.$genre['genre'].'</p>';
             // }
-            echo sprintf('[<a href=show?id=%s>show</a>]',$picture["id"]);
-            //いいねの数の表示
             echo sprintf('<a href=../like/create?id=%s><i class="fa fa-thumbs-up"></i></a>',$picture["id"]);
+            //いいねの数の表示  
             $likes = new picturesController($db,$plural_resource);
             $cnt = $likes->like($picture_id);
             if (isset($cnt)){
@@ -199,6 +197,7 @@
                 $picturesController = new picturesController($db,$plural_resource);
                 $update_like = $picturesController->update_likes($likes,$picture_id);
             }
+            echo sprintf('[<a href=show?id=%s>show</a>]',$picture["id"]);     
         ?>
         </span>
       <?php } ?>

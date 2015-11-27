@@ -1,5 +1,5 @@
 <?php
-    
+    //クッキーの設定
     session_start();
     if (isset($_COOKIE['email']) && $_COOKIE['email'] != '') {
         $_POST['email'] = $_COOKIE['email'];
@@ -7,7 +7,7 @@
         $_POST['save'] = 'on';
     }
 
-
+    //ログイン
     if(!empty($_POST)) {
         if($_POST['email'] != '' && $_POST['password'] != '') {
             $membersController = new membersController($db,$plural_resource);
@@ -31,12 +31,12 @@
 ?>
 <div class="container">
   <div class="card card-container">
-    <p>&raquo;<a href="new">create new account</a></p>
-      <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+    <p>&raquo;<a href="new">create new account</a></p>     
     <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
     <p id="profile-name" class="profile-name-card"></p>
     <div>
     </div>
+    <!-- ログインフォーム -->
     <form action="" method="post" class="form-signin">
       <dl>
         <dt>E-mail</dt>
@@ -51,12 +51,12 @@
               }
           ?>
           <?php if (isset($error["login"])): ?>
-              <?php if($error["login"] == 'blanck'): ?>
-                  <p class="error">*メールアドレスとパスワードを正しく入力してください。</p>
-              <?php  endif; ?>    
-              <?php if($error['login'] == 'failed'): ?>
-                  <p class="error">*ログインに失敗しました、正しくご記入ください</p>
-              <?php endif; ?>
+            <?php if($error["login"] == 'blanck'): ?>
+              <p class="error">*メールアドレスとパスワードを正しく入力してください。</p>
+            <?php endif; ?>    
+            <?php if($error['login'] == 'failed'): ?>
+              <p class="error">*ログインに失敗しました、正しくご記入ください</p>
+            <?php endif; ?>
           <?php endif; ?>
         </dd>
         <dt>Password</dt>
@@ -79,6 +79,6 @@
         <button class="btn btn-lg btn-primary btn-block btn-signin"  type="submit">Let's Go!</button>
       </dl>
     </form>       
-  </div><!-- /card-container -->
-</div><!-- /container -->
+  </div>
+</div>
 

@@ -45,7 +45,7 @@
 <div class="container">
   <div class="row">
     <div class="form-box">
-      <h1>Welcome Our service</h1>
+      <h1>PICTURES GERDEN</h1>
       <form role="form" id="contact-form" action="" method="post" enctype="multipart/form-data">
                 <!-- name field -->
         <div class="form-group">

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    //cookieはログインした時と同じ改造で削除
+    //cookieはログインした時と同じ階層で削除
     $_SESSION = array();
 
     if (ini_get("session.use_cookies")){

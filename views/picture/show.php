@@ -1,5 +1,6 @@
 <?php
     session_start();
+    //写真のidを取得
     $id = $_REQUEST['id'];
 ?>
 <a href="new">一覧にもどる</a>
@@ -16,6 +17,7 @@
             echo '<h3>'.$picture["title"].'</h3>';
             echo sprintf('<img src="../pictures/%s" width="200" height ="200">',$picture['picture']);
         ?>
+        <!-- ログインユーザーが自分の投稿を参照した際にコメントの編集ができるようにする -->
         <div class='show_contents'>
           <?php if ($_SESSION['id'] == $picture['member_id']):?>
             <?php $_SESSION['picture_id'] = $id ?>
@@ -23,13 +25,12 @@
               <input type="text" name="edit_name" value="<?php echo $picture['comment']?>">
               <input type="submit" value="コメントを編集する">
             </form>
-            <!-- デリートボタン -->
+            <!-- 投稿の削除 -->
             <?php echo '<p><input type="button" value="投稿を削除" onClick="disp()"></p>';?>
           <?php else:?>
             <p><?php echo $picture['comment'];?></p>
           <?php endif; ?>
         </div>
-
         <?php
             //ジャンルの表示
             // if(isset($picture['genre_id'])) {
@@ -54,7 +55,8 @@
       </div>
     </div>
   </div>
-</div>  
+</div> 
+<!-- コメントの投稿 -->
 <p>コメントを投稿しよう</p>
 <form action="" method="post">
   <input type="text" name="comment">

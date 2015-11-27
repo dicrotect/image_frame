@@ -6,7 +6,7 @@
              $this->db = $db;
              $this->plural_resource = $plural_resource;
         }
-
+        //pictures以外のDBをviews/picture内で表示する
         public function member_show($id) {
             //membersControllersをつかって
             //picture内にクラスを作るためinclideで読み込む
@@ -52,6 +52,7 @@
             $members = $membersController->show_member_name($member_id);
             return $members;
         }
+        //picturesの情報
         public function create($picture,$title,$comment,$genre) {
             $sql = new picture($this->plural_resource);
             $sql = $sql->create($picture,$title,$comment,$genre);
